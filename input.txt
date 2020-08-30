@@ -1,0 +1,19 @@
+a = c = (5 + 3) * 2 + 3
+
+print a
+print b
+
+b += 3 + a
+
+print a
+print b
+
+b = 4
+
+print a
+print b
+
+b += 3 + a
+
+print a
+print b
