@@ -1,8 +1,10 @@
 %{
-    #include <math.h>
     #include <stdio.h>
     #include <stdlib.h>
     #include "parser.tab.h"
+
+    FILE *yyin;
+    FILE *yyout;
 %}
 
 %option yylineno
@@ -16,10 +18,10 @@ number {digit}+
 
     /* Unary and Binary Operators */
 
-"+"             { yylval.string = strdup(yytext); return(PLUS); }
-"-"             { yylval.string = strdup(yytext); return(MINUS); }
-"*"             { yylval.string = strdup(yytext); return(MUL); }
-"/"             { yylval.string = strdup(yytext); return(DIV); }
+"+"             { return(yytext[0]); }
+"-"             { return(yytext[0]); }
+"*"             { return(yytext[0]); }
+"/"             { return(yytext[0]); }
 "="             { yylval.string = strdup(yytext); return(ASSIGN); }
 "+="            { yylval.string = strdup(yytext); return(ASSIGN_PLUS); }
 "-="            { yylval.string = strdup(yytext); return(ASSIGN_MINUS); }
@@ -36,12 +38,12 @@ number {digit}+
     /* Functions */
 
 "print"         { return(PRINT); }
-"log"
-"sin"
-"cos"
-"tan"
-"pow"
-"sqrt"
+"log"           { yylval.string = strdup(yytext); return(LOG); }
+"sin"           { yylval.string = strdup(yytext); return(SIN); }
+"cos"           { yylval.string = strdup(yytext); return(COS); }
+"tan"           { yylval.string = strdup(yytext); return(TAN); }
+"pow"           { yylval.string = strdup(yytext); return(POW); }
+"sqrt"          { yylval.string = strdup(yytext); return(SQRT); }
 
 \n              { return(NEW_LINE); }
 
@@ -51,3 +53,15 @@ number {digit}+
 [ ] { }
 
 %%
+
+int main(int argc, char *argv[])
+{
+    yyin = fopen(argv[1], "r");
+
+    yyparse();
+    yylex();
+
+    fclose(yyin);
+
+    return 0;
+}

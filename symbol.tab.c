@@ -1,3 +1,4 @@
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -51,6 +52,24 @@ void assignment(char *name, char *sign, float value)
                 else
                         fprintf(stderr, "\n%s = non inizializzata\n", name);
         }
+}
+
+float callFn(char *functionName, float expr)
+{
+        float result = 0;
+
+        if(!strcmp(functionName, "log"))
+                result = log(expr);
+        if(!strcmp(functionName, "sin"))
+                result = sin(expr);
+        if(!strcmp(functionName, "cos"))
+                result = cos(expr);
+        if(!strcmp(functionName, "tan"))
+                result = tan(expr);
+        if(!strcmp(functionName, "sqrt"))
+                result = sqrt(expr);
+
+        return result;
 }
 
 token *findToken(char *name)

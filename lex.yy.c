@@ -496,12 +496,14 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "lexer.fl"
 #line 2 "lexer.fl"
-    #include <math.h>
     #include <stdio.h>
     #include <stdlib.h>
     #include "parser.tab.h"
-#line 504 "lex.yy.c"
-#line 505 "lex.yy.c"
+
+    FILE *yyin;
+    FILE *yyout;
+#line 506 "lex.yy.c"
+#line 507 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -718,14 +720,14 @@ YY_DECL
 		}
 
 	{
-#line 14 "lexer.fl"
+#line 16 "lexer.fl"
 
 
 
-#line 18 "lexer.fl"
+#line 20 "lexer.fl"
     /* Unary and Binary Operators */
 
-#line 729 "lex.yy.c"
+#line 731 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -794,128 +796,128 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 20 "lexer.fl"
-{ yylval.string = strdup(yytext); return(PLUS); }
+#line 22 "lexer.fl"
+{ return(yytext[0]); }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 21 "lexer.fl"
-{ yylval.string = strdup(yytext); return(MINUS); }
+#line 23 "lexer.fl"
+{ return(yytext[0]); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 22 "lexer.fl"
-{ yylval.string = strdup(yytext); return(MUL); }
+#line 24 "lexer.fl"
+{ return(yytext[0]); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 23 "lexer.fl"
-{ yylval.string = strdup(yytext); return(DIV); }
+#line 25 "lexer.fl"
+{ return(yytext[0]); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 24 "lexer.fl"
+#line 26 "lexer.fl"
 { yylval.string = strdup(yytext); return(ASSIGN); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 25 "lexer.fl"
+#line 27 "lexer.fl"
 { yylval.string = strdup(yytext); return(ASSIGN_PLUS); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 26 "lexer.fl"
+#line 28 "lexer.fl"
 { yylval.string = strdup(yytext); return(ASSIGN_MINUS); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 27 "lexer.fl"
+#line 29 "lexer.fl"
 { yylval.string = strdup(yytext); return(ASSIGN_MUL); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 28 "lexer.fl"
+#line 30 "lexer.fl"
 { yylval.string = strdup(yytext); return(ASSIGN_DIV); }
 	YY_BREAK
 /* Parenthesis */
 case 10:
 YY_RULE_SETUP
-#line 33 "lexer.fl"
+#line 35 "lexer.fl"
 { return(PAR_OPEN); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 34 "lexer.fl"
+#line 36 "lexer.fl"
 { return(PAR_CLOSED); }
 	YY_BREAK
 /* Functions */
 case 12:
 YY_RULE_SETUP
-#line 39 "lexer.fl"
+#line 41 "lexer.fl"
 { return(PRINT); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 40 "lexer.fl"
-
+#line 42 "lexer.fl"
+{ yylval.string = strdup(yytext); return(LOG); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 41 "lexer.fl"
-
+#line 43 "lexer.fl"
+{ yylval.string = strdup(yytext); return(SIN); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 42 "lexer.fl"
-
+#line 44 "lexer.fl"
+{ yylval.string = strdup(yytext); return(COS); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 43 "lexer.fl"
-
+#line 45 "lexer.fl"
+{ yylval.string = strdup(yytext); return(TAN); }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 44 "lexer.fl"
-
+#line 46 "lexer.fl"
+{ yylval.string = strdup(yytext); return(POW); }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 45 "lexer.fl"
-
+#line 47 "lexer.fl"
+{ yylval.string = strdup(yytext); return(SQRT); }
 	YY_BREAK
 case 19:
 /* rule 19 can match eol */
 YY_RULE_SETUP
-#line 47 "lexer.fl"
+#line 49 "lexer.fl"
 { return(NEW_LINE); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 49 "lexer.fl"
+#line 51 "lexer.fl"
 { yylval.identifier.name = strdup(yytext); return(ID); }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 50 "lexer.fl"
+#line 52 "lexer.fl"
 { yylval.int_t = atoi(yytext); return(NUM_INT); }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 51 "lexer.fl"
+#line 53 "lexer.fl"
 { yylval.float_t = atof(yytext); return(NUM_REAL); } 
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 52 "lexer.fl"
+#line 54 "lexer.fl"
 { }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 54 "lexer.fl"
+#line 56 "lexer.fl"
 ECHO;
 	YY_BREAK
-#line 919 "lex.yy.c"
+#line 921 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1932,5 +1934,17 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 54 "lexer.fl"
+#line 56 "lexer.fl"
 
+
+int main(int argc, char *argv[])
+{
+    yyin = fopen(argv[1], "r");
+
+    yyparse();
+    yylex();
+
+    fclose(yyin);
+
+    return 0;
+}

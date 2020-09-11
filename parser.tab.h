@@ -38,7 +38,7 @@
 # define YY_YY_PARSER_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
-# define YYDEBUG 1
+# define YYDEBUG 0
 #endif
 #if YYDEBUG
 extern int yydebug;
@@ -52,20 +52,22 @@ extern int yydebug;
     NUM_REAL = 258,
     NUM_INT = 259,
     ID = 260,
-    NEW_LINE = 261,
-    PAR_OPEN = 262,
-    PAR_CLOSED = 263,
-    PRINT = 264,
-    UMINUS = 265,
-    ASSIGN = 266,
-    ASSIGN_PLUS = 267,
-    ASSIGN_MINUS = 268,
-    ASSIGN_MUL = 269,
-    ASSIGN_DIV = 270,
-    PLUS = 271,
-    MINUS = 272,
-    MUL = 273,
-    DIV = 274
+    LOG = 261,
+    SIN = 262,
+    COS = 263,
+    TAN = 264,
+    POW = 265,
+    SQRT = 266,
+    PAR_OPEN = 267,
+    PAR_CLOSED = 268,
+    PRINT = 269,
+    NEW_LINE = 270,
+    ASSIGN = 271,
+    ASSIGN_PLUS = 272,
+    ASSIGN_MINUS = 273,
+    ASSIGN_MUL = 274,
+    ASSIGN_DIV = 275,
+    UMINUS = 276
   };
 #endif
 
@@ -73,14 +75,14 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
+#line 12 "parser.y"
+
+        char* string;
 #line 16 "parser.y"
 
-    float float_t;
-    int int_t;
-#line 21 "parser.y"
-
-        char *string;
-#line 25 "parser.y"
+        float float_t;
+        int int_t;
+#line 22 "parser.y"
 
         struct identifier
         {
@@ -88,7 +90,7 @@ union YYSTYPE
                 float value;
         } identifier;
 
-#line 92 "parser.tab.h"
+#line 94 "parser.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

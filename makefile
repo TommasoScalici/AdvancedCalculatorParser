@@ -1,5 +1,4 @@
 flexbison:
 	flex lexer.fl
-	bison -d parser.y
-	gcc -o result lex.yy.c parser.tab.c symbol.tab.c
-	./result < input.txt
+	bison -d --graph -v parser.y
+	gcc -g -o result lex.yy.c parser.tab.c symbol.tab.c -lm
